@@ -14,7 +14,7 @@ const App: React.FC = () => {
     <AuthProvider>
       <Router>
         <Navbar />
-        <div className="container mx-auto p-4">
+        <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

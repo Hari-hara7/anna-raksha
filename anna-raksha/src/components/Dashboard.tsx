@@ -8,7 +8,7 @@ const Dashboard: React.FC = () => {
   // Check if the user is signed in
   if (!user) {
     return (
-      <div className={`flex flex-col items-center justify-center min-h-screen ${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gray-50 text-gray-700'}`}>
+      <div className={`flex flex-col items-center justify-center min-h-screen w-screen ${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gray-50 text-gray-700'}`}>
         <p className="text-2xl font-semibold">You need to sign in to access the dashboard.</p>
       </div>
     );
@@ -21,13 +21,13 @@ const Dashboard: React.FC = () => {
   const displayName = user.displayName || 'User';
 
   return (
-    <div className={`${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gradient-to-br from-yellow-50 via-white to-gray-100'} min-h-screen flex flex-col items-center p-6`}>
+    <div className={`${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gradient-to-br from-yellow-50 via-white to-gray-100'} min-h-screen w-screen flex flex-col items-center p-6 w-screen`}>
       {/* Theme Toggle */}
-      <div className="w-full flex justify-end p-4">
+      <div className="w-full flex justify-end p-4 ">
         <button
           onClick={() => setIsDarkMode(!isDarkMode)}
           className={`p-2 rounded-full shadow-md focus:outline-none ${
-            isDarkMode ? 'bg-yellow-400 text-gray-900' : 'bg-gray-800 text-yellow-400'
+            isDarkMode ? 'bg-yellow-400 text-gray-900' : 'bg-gray-800 text-yellow-400 w-screen'
           }`}
         >
           {isDarkMode ? '☀️' : '🌙'}
@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
       </div>
 
       {/* Profile Section */}
-      <div className={`${isDarkMode ? 'bg-gray-800 text-yellow-400' : 'bg-white text-gray-800'} w-full max-w-md shadow-lg rounded-xl p-6 text-center`}>
+      <div className={`${isDarkMode ? 'bg-gray-800 text-yellow-400' : 'bg-white text-gray-800'} w-full max-w-md shadow-lg rounded-xl p-6 text-center w-screen`}>
         <img
           src={profileImage}
           alt="User profile"
