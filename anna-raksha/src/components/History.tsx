@@ -44,7 +44,11 @@ const HistoryPage: React.FC = () => {
 
   if (loading) {
     return (
+<<<<<<< HEAD
       <div className="flex justify-center items-center h-screen w-screen bg-black text-white ">
+=======
+      <div className="flex justify-center items-center h-screen bg-black text-white w-screen ">
+>>>>>>> 15bd79eb7f6dbaa353dbe620574506f3701e39f5
         <p className="text-xl">Loading food posts...</p>
       </div>
     );
