@@ -13,7 +13,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black to-gray-900 px-4">
+    <div className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-br from-black to-gray-900 px-4">
       {/* Glassmorphic Card */}
       <div className="relative w-full max-w-md sm:max-w-lg p-6 sm:p-8 bg-opacity-30 bg-black backdrop-blur-lg rounded-2xl shadow-2xl border border-yellow-500">
         {/* Title */}

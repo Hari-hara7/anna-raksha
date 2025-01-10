@@ -81,7 +81,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen w-screen">
       {/* Language Selector */}
       <div className="absolute top-16 right-4">
         <select
@@ -97,7 +97,7 @@ const Home: React.FC = () => {
       </div>
 
         {/* Hero Section */}
-        <section className="relative text-center py-20 px-6">
+        <section className="relative text-center py-20 px-6 min-h-screen w-screen">
         <motion.div
           className="absolute inset-0 bg-hero-pattern bg-cover bg-center opacity-10"
           initial={{ opacity: 0 }}
