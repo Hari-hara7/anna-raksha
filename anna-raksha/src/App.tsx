@@ -1,31 +1,31 @@
-// src/App.tsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
-import DonorPage from './pages/DonorPage';
-import Dashboard from './pages/Dashboard';
+import Home from './components/Home';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import DonorPage from './components/DonorPage';
+import Dashboard from './components/Dashboard';
+import History from './components/History';
 
-const App = () => {
+const App: React.FC = () => {
   return (
-    <Router>
-      <div className="flex flex-col min-h-screen">
+    <AuthProvider>
+      <Router>
         <Navbar />
-        <main className="flex-grow">
+        <div className="container mx-auto p-4">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/donor" element={<DonorPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/history" element={<History />} />
           </Routes>
-        </main>
-        <Footer />
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 };
 

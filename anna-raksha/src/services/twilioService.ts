@@ -1,19 +1,13 @@
 // src/services/twilioService.ts
 import twilio from 'twilio';
 
-// Twilio setup (Use environment variables)
-const accountSid = process.env.TWILIO_ACCOUNT_SID!;
-const authToken = process.env.TWILIO_AUTH_TOKEN!;
-const client = twilio(accountSid, authToken);
+const client = twilio('TWILIO_ACCOUNT_SID', 'TWILIO_AUTH_TOKEN');
 
-export const sendSMS = async (to: string, message: string) => {
-  try {
-    await client.messages.create({
-      body: message,
-      to,  // The phone number to send SMS to
-      from: process.env.TWILIO_PHONE_NUMBER!,  // Your Twilio phone number
-    });
-  } catch (error) {
-    console.error('Error sending SMS:', error);
-  }
+// Send SMS using Twilio
+export const sendSMS = (phoneNumber: string, message: string) => {
+  client.messages.create({
+    body: message,
+    from: 'YOUR_TWILIO_PHONE_NUMBER',
+    to: phoneNumber,
+  });
 };

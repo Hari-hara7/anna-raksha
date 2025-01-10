@@ -1,19 +1,25 @@
 // src/pages/Home.tsx
 import React from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Home = () => {
   return (
-    <div className="container mx-auto px-4 py-10">
-      <h1 className="text-4xl font-bold">Welcome to My Donation App</h1>
-      <p className="mt-4 text-lg">A platform where you can donate food and help those in need.</p>
-      <div className="mt-8">
-        <h2 className="text-2xl font-semibold">Features</h2>
-        <ul className="list-disc ml-5 mt-2">
-          <li>Post available food</li>
-          <li>Send SMS notifications</li>
-          <li>Track donation history</li>
-        </ul>
+    <div>
+      <Navbar />
+      <div className="container mx-auto p-8">
+        <h1 className="text-3xl font-bold">Welcome to the Food Donation Platform</h1>
+        <p className="mt-4 text-lg">Donate food to those in need and make a difference in someone's life.</p>
+        <div className="mt-8">
+          <h2 className="text-2xl">Features:</h2>
+          <ul className="mt-4 list-disc pl-8">
+            <li>Post food donations</li>
+            <li>View donation history</li>
+            <li>Receive food donations near you</li>
+          </ul>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 };

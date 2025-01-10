@@ -1,24 +1,31 @@
 // src/firebase/auth.ts
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from './firebaseConfig';
 
-// Email/Password Login
-export const loginWithEmail = (email: string, password: string) => {
-  return signInWithEmailAndPassword(auth, email, password);
+// Sign up with email and password
+export const signUpWithEmail = async (email: string, password: string) => {
+  try {
+    await createUserWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.error('Error signing up: ', error.message);
+  }
 };
 
-// Email/Password SignUp
-export const signUpWithEmail = (email: string, password: string) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+// Login with email and password
+export const loginWithEmail = async (email: string, password: string) => {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    console.error('Error logging in: ', error.message);
+  }
 };
 
-// Google Login
-export const loginWithGoogle = () => {
+// Google sign-in
+export const googleSignIn = async () => {
   const provider = new GoogleAuthProvider();
-  return signInWithPopup(auth, provider);
-};
-
-// Logout
-export const logout = () => {
-  return signOut(auth);
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (error) {
+    console.error('Google sign-in error: ', error.message);
+  }
 };

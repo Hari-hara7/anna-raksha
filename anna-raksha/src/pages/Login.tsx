@@ -1,50 +1,52 @@
 // src/pages/Login.tsx
 import React, { useState } from 'react';
-import { loginWithEmail, loginWithGoogle } from '../firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { login } from '../firebase/auth';  // Assuming a helper function for Firebase auth
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
-const Login = () => {
+const Login: React.FC = () => {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
     try {
-      await loginWithEmail(email, password);
-      navigate('/dashboard');
+      await login(email, password);
+      history.push('/dashboard');  // Redirect after login
     } catch (error) {
-      console.error('Login failed', error);
-    }
-  };
-
-  const handleGoogleLogin = async () => {
-    try {
-      await loginWithGoogle();
-      navigate('/dashboard');
-    } catch (error) {
-      console.error('Google login failed', error);
+      console.error(error);
+      alert("Login failed. Please check your credentials.");
     }
   };
 
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h2 className="text-2xl font-semibold">Login</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        className="w-full p-2 mt-4 border rounded"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        className="w-full p-2 mt-4 border rounded"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin} className="w-full p-2 mt-4 bg-blue-600 text-white rounded">Login</button>
-      <button onClick={handleGoogleLogin} className="w-full p-2 mt-4 bg-red-600 text-white rounded">Login with Google</button>
+    <div>
+      <Navbar />
+      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
+        <form onSubmit={handleLogin} className="bg-white p-6 rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 mb-4 border border-gray-300 rounded"
+            required
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 mb-4 border border-gray-300 rounded"
+            required
+          />
+          <button type="submit" className="w-full p-3 bg-blue-500 text-white rounded">Login</button>
+        </form>
+      </div>
+      <Footer />
     </div>
   );
 };
