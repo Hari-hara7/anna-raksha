@@ -1,70 +1,145 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
-import { FaBars, FaSignOutAlt } from 'react-icons/fa';  // For burger menu and sign out icon
+import { FaHome, FaUser, FaHistory, FaSignOutAlt, FaBars, FaTimes } from 'react-icons/fa';
+import logo from '../assets/annaraksha.png'; // Ensure correct path for logoanna-raksha/src/assets/annaraksha.png
 
 const Navbar: React.FC = () => {
   const { user, signOut } = useAuth();
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile burger menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <nav className="bg-white/30 backdrop-blur-lg text-white p-4 flex justify-between items-center fixed w-full z-50 shadow-lg transition-all ">
-      {/* Logo and Website Name */}
-      <div className="flex items-center space-x-3">
-        <img
-          src="/path/to/your/logo.png" // Replace with actual path to your logo
-          alt="Anna Raksha Logo"
-          className="w-12 h-12 rounded-full shadow-md"
-        />
-        <Link to="/" className="text-3xl font-extrabold text-white hover:text-gray-200 transition-all">
+    <nav className="bg-[#121212] text-white p-4 flex justify-between items-center shadow-lg rounded-lg relative">
+      <div className="flex items-center space-x-2">
+        {/* Logo */}
+        <img src={logo} alt="Anna Raksha Logo" className="w-10 h-10" />
+        {/* Website Name */}
+        <Link to="/" className="text-2xl font-bold text-yellow-400 hover:text-yellow-500 transition duration-300">
           Anna Raksha
         </Link>
       </div>
-
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex space-x-8">
-        <Link to="/" className="hover:text-gray-400 transition-all">Home</Link>
-        <Link to="/donor" className="hover:text-gray-400 transition-all">Donor</Link>
-        <Link to="/history" className="hover:text-gray-400 transition-all">History</Link>
-        <Link to="/dashboard" className="hover:text-gray-400 transition-all">Dashboard</Link>
+      
+      {/* Desktop Menu */}
+      <div className="hidden md:flex space-x-6">
+        <Link to="/" className="flex items-center hover:text-yellow-500 transition duration-300">
+          <FaHome className="mr-2" />
+          Home
+        </Link>
+        <Link to="/donor" className="flex items-center hover:text-yellow-500 transition duration-300">
+          <FaUser className="mr-2" />
+          Donor
+        </Link>
+        <Link to="/history" className="flex items-center hover:text-yellow-500 transition duration-300">
+          <FaHistory className="mr-2" />
+          History
+        </Link>
+        <Link to="/dashboard" className="flex items-center hover:text-yellow-500 transition duration-300">
+          <FaUser className="mr-2" />
+          Dashboard
+        </Link>
         {user ? (
           <button
             onClick={signOut}
-            className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-all"
+            className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 flex items-center transition duration-300"
           >
-            <FaSignOutAlt className="inline mr-2" /> Sign Out
+            <FaSignOutAlt className="mr-2" />
+            Sign Out
           </button>
         ) : (
-          <Link to="/login" className="hover:text-gray-400 transition-all">Login</Link>
+          <Link to="/login" className="flex items-center hover:text-yellow-500 transition duration-300">
+            <FaUser className="mr-2" />
+            Login
+          </Link>
         )}
       </div>
-
-      {/* Mobile Burger Menu */}
-      <div className="md:hidden">
-        <button 
-          onClick={() => setIsMenuOpen(!isMenuOpen)} 
-          className="bg-white/20 backdrop-blur-lg p-2 rounded-lg shadow-md hover:bg-white/30 transition-all"
+      
+      {/* Mobile Menu */}
+      <div className="md:hidden flex items-center">
+        <button
+          onClick={toggleMenu}
+          className="text-white text-3xl focus:outline-none hover:text-yellow-500 transition duration-300"
         >
-          <FaBars className="text-3xl text-white" />
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
         </button>
-        {isMenuOpen && (
-          <div className="absolute top-16 right-4 bg-white/30 backdrop-blur-lg p-6 rounded-lg shadow-lg space-y-6 w-56 mt-4 transition-all">
-            <Link to="/" className="block text-lg text-white hover:text-gray-200 transition-all">Home</Link>
-            <Link to="/donor" className="block text-lg text-white hover:text-gray-200 transition-all">Donor</Link>
-            <Link to="/history" className="block text-lg text-white hover:text-gray-200 transition-all">History</Link>
-            <Link to="/dashboard" className="block text-lg text-white hover:text-gray-200 transition-all">Dashboard</Link>
-            {user ? (
-              <button
-                onClick={signOut}
-                className="block w-full bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-600 transition-all"
-              >
-                <FaSignOutAlt className="inline mr-2" /> Sign Out
-              </button>
-            ) : (
-              <Link to="/login" className="block text-lg text-white hover:text-gray-200 transition-all">Login</Link>
-            )}
+      </div>
+
+      {/* Slide-in Mobile Menu with Overlay */}
+      <div
+        className={`${
+          isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        } fixed inset-0 bg-black bg-opacity-60 z-40 flex justify-start items-start transition-transform duration-300 ease-in-out`}
+      >
+        {/* Sliding Menu */}
+        <div className="bg-[#121212] text-white w-3/4 h-full p-6 flex flex-col space-y-6">
+          <div className="flex justify-between items-center mb-6">
+            {/* Logo and Close Button */}
+            <div className="flex items-center space-x-2">
+              <img src={logo} alt="Anna Raksha Logo" className="w-10 h-10" />
+              <Link to="/" className="text-xl font-bold text-yellow-400">
+                Anna Raksha
+              </Link>
+            </div>
+            <button onClick={toggleMenu} className="text-white text-3xl">
+              <FaTimes />
+            </button>
           </div>
-        )}
+
+          {/* Menu Items */}
+          <Link
+            to="/"
+            className="flex items-center hover:text-yellow-500 transition duration-300"
+            onClick={toggleMenu}
+          >
+            <FaHome className="mr-3 text-lg" />
+            Home
+          </Link>
+          <Link
+            to="/donor"
+            className="flex items-center hover:text-yellow-500 transition duration-300"
+            onClick={toggleMenu}
+          >
+            <FaUser className="mr-3 text-lg" />
+            Donor
+          </Link>
+          <Link
+            to="/history"
+            className="flex items-center hover:text-yellow-500 transition duration-300"
+            onClick={toggleMenu}
+          >
+            <FaHistory className="mr-3 text-lg" />
+            History
+          </Link>
+          <Link
+            to="/dashboard"
+            className="flex items-center hover:text-yellow-500 transition duration-300"
+            onClick={toggleMenu}
+          >
+            <FaUser className="mr-3 text-lg" />
+            Dashboard
+          </Link>
+
+          {/* Authentication */}
+          {user ? (
+            <button
+              onClick={signOut}
+              className="bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 flex items-center transition duration-300"
+            >
+              <FaSignOutAlt className="mr-2" />
+              Sign Out
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="flex items-center hover:text-yellow-500 transition duration-300"
+              onClick={toggleMenu}
+            >
+              <FaUser className="mr-3 text-lg" />
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </nav>
   );

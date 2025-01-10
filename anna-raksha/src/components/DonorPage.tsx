@@ -98,7 +98,13 @@ const DonorPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-900 text-white min-h-screen ">
+    <div className="p-6 bg-gray-900 text-white min-h-screen">
+      {/* Welcome Section */}
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-extrabold text-yellow-500 mb-2">Welcome to the Donor Portal</h1>
+        <p className="text-xl text-gray-400">Post your food donations and help those in need.</p>
+      </div>
+
       {/* Profile Header */}
       {user && (
         <div className="flex items-center mb-8 bg-gray-800 p-4 rounded-lg shadow-lg">
@@ -269,7 +275,7 @@ const DonorPage: React.FC = () => {
             ))}
           </div>
         ) : (
-          <p className="text-gray-400">No food posts available.Please signin to Continue</p>
+          <p className="text-gray-400">No food posts available. Please sign in to continue.</p>
         )}
       </div>
     </div>
