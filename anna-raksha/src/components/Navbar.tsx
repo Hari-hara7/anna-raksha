@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
         ) : (
           <Link to="/login" className="flex items-center hover:text-yellow-500 transition duration-300">
             <FaUser className="mr-2" />
-            Login
+           Signin
           </Link>
         )}
       </div>
@@ -136,7 +136,7 @@ const Navbar: React.FC = () => {
               onClick={toggleMenu}
             >
               <FaUser className="mr-3 text-lg" />
-              Login
+             Signin
             </Link>
           )}
         </div>

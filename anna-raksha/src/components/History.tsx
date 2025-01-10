@@ -28,6 +28,20 @@ const HistoryPage: React.FC = () => {
     fetchFoodPosts();
   }, []);
 
+  // Add Tawk.to chatbot script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://embed.tawk.to/67817afbaf5bfec1dbe9eb10/1ih8sgqct';
+    script.async = true;
+    script.charset = 'UTF-8';
+    script.setAttribute('crossorigin', '*');
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script); // Clean up the script on component unmount
+    };
+  }, []);
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen bg-black text-white">

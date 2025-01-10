@@ -12,8 +12,8 @@ const Signup: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form onSubmit={handleSignup} className="bg-white p-8 rounded shadow-lg">
+    <div className="flex justify-center items-center h-screen bg-dark-100">
+      <form onSubmit={handleSignup} className="bg-dark p-8 rounded shadow-lg">
         <input
           type="email"
           value={email}

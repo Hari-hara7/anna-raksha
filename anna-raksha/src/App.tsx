@@ -8,6 +8,7 @@ import Signup from './components/Signup';
 import DonorPage from './components/DonorPage';
 import Dashboard from './components/Dashboard';
 import History from './components/History';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
@@ -24,6 +25,7 @@ const App: React.FC = () => {
             <Route path="/history" element={<History />} />
           </Routes>
         </div>
+        <Footer /> {/* Add Footer here */}
       </Router>
     </AuthProvider>
   );
