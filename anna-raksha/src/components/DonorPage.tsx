@@ -65,7 +65,7 @@ const DonorPage: React.FC = () => {
       await addFoodPost({
         name: foodName,
         quantity,
-        foodType,
+        foodType, // Includes the new "Edible" or "Waste" value
         expiryDate,
         pickupLocation,
         pickupInstructions,
@@ -77,7 +77,7 @@ const DonorPage: React.FC = () => {
         dateTime: new Date(),
         uid: user.uid,
       });
-
+      
       socket.emit('newFoodPost', { name: foodName, quantity });
 
       const foodPostsCollection = collection(db, 'foodPosts');
@@ -133,6 +133,23 @@ const DonorPage: React.FC = () => {
               className="border-b-2 border-white bg-transparent text-white p-2 w-full"
             />
           </div>
+          <div className="flex items-center mb-4">
+  <FaInfoCircle className="mr-2 text-yellow-500" />
+  <select
+    value={foodType}
+    onChange={(e) => setFoodType(e.target.value)}
+    className="border-b-2 border-dark bg-black text-white p-2 w-full"
+  >
+    <option value="" disabled>
+      Select Food Type
+    </option>
+    <option value="Edible">Edible</option>
+    <option value="Waste">Waste</option>
+  </select>
+</div>
+
+
+
           <div className="flex items-center mb-4">
             <FaPhoneAlt className="mr-2 text-yellow-500" />
             <input
@@ -283,3 +300,6 @@ const DonorPage: React.FC = () => {
 };
 
 export default DonorPage;
+
+
+
