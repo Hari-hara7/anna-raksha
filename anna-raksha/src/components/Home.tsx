@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 
 const Home: React.FC = () => {
   return (
-    <div className="bg-black text-white min-h-screen">
+    //<div className="bg-black text-white min-h-screen">
+    //<div className="bg-black text-white min-h-screen w-screen p-0 m-0">
+    <div className="bg-black text-white min-h-screen w-screen ">
       {/* Hero Section */}
       <section className="relative text-center py-20 px-6">
         <motion.div
