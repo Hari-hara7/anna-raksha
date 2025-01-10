@@ -24,7 +24,7 @@ const Login: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
+      <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-gray-200">
         <form onSubmit={handleLogin} className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
           <input

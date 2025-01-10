@@ -19,7 +19,7 @@ const Dashboard: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-200">
+      <div className="flex flex-col items-center justify-center min-h-screen w-screen bg-gray-200">
         <h2 className="text-2xl font-bold mb-4">Your Donations</h2>
         <ul className="space-y-4">
           {donations.map((donation, index) => (
