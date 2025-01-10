@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 const Dashboard: React.FC = () => {
   const { user, signOut } = useAuth();
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default is dark mode
 
   // Check if the user is signed in
   if (!user) {
-    return <p>You need to sign in to access the dashboard.</p>;
+    return (
+      <div className={`flex flex-col items-center justify-center min-h-screen ${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gray-50 text-gray-700'}`}>
+        <p className="text-2xl font-semibold">You need to sign in to access the dashboard.</p>
+      </div>
+    );
   }
 
   // Set a fallback image in case the user doesn't have a photo
@@ -16,22 +21,66 @@ const Dashboard: React.FC = () => {
   const displayName = user.displayName || 'User';
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-gray-100 min-h-screen">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Welcome, {displayName}!
-      </h1>
-      <img
-        src={profileImage}
-        alt="User profile"
-        className="rounded-full w-32 h-32 mb-4 object-cover"
-      />
-      <p className="text-lg text-gray-700 mb-4">Email: {user.email}</p>
-      <button
-        onClick={signOut}
-        className="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
-      >
-        Sign Out
-      </button>
+    <div className={`${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gradient-to-br from-yellow-50 via-white to-gray-100'} min-h-screen flex flex-col items-center p-6`}>
+      {/* Theme Toggle */}
+      <div className="w-full flex justify-end p-4">
+        <button
+          onClick={() => setIsDarkMode(!isDarkMode)}
+          className={`p-2 rounded-full shadow-md focus:outline-none ${
+            isDarkMode ? 'bg-yellow-400 text-gray-900' : 'bg-gray-800 text-yellow-400'
+          }`}
+        >
+          {isDarkMode ? '☀️' : '🌙'}
+        </button>
+      </div>
+
+      {/* Profile Section */}
+      <div className={`${isDarkMode ? 'bg-gray-800 text-yellow-400' : 'bg-white text-gray-800'} w-full max-w-md shadow-lg rounded-xl p-6 text-center`}>
+        <img
+          src={profileImage}
+          alt="User profile"
+          className="rounded-full w-32 h-32 mx-auto mb-4 object-cover shadow-md border-4 border-yellow-500"
+        />
+        <h1 className="text-2xl font-bold mb-2">
+          Welcome, <span className="text-yellow-500">{displayName}</span>!
+        </h1>
+        <p className="mb-4">Email: <span className="font-medium">{user.email}</span></p>
+        <button
+          onClick={signOut}
+          className={`w-full py-2 mt-4 rounded-lg shadow-md focus:outline-none focus:ring-2 transition-all ${
+            isDarkMode
+              ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-300'
+              : 'bg-yellow-500 text-white hover:bg-yellow-600'
+          }`}
+        >
+          Sign Out
+        </button>
+      </div>
+
+      {/* Additional Section */}
+      <div className={`${isDarkMode ? 'bg-gray-800 text-yellow-400' : 'bg-white text-gray-800'} w-full max-w-md mt-8 shadow-lg rounded-xl p-6`}>
+        <h2 className="text-xl font-semibold mb-4">Dashboard Features</h2>
+        <ul className="space-y-3">
+          <li className="flex items-center">
+            <span className={`w-6 h-6 flex items-center justify-center rounded-full mr-3 font-bold ${
+              isDarkMode ? 'bg-yellow-500 text-gray-900' : 'bg-yellow-500 text-white'
+            }`}>1</span>
+            View your profile and manage account settings.
+          </li>
+          <li className="flex items-center">
+            <span className={`w-6 h-6 flex items-center justify-center rounded-full mr-3 font-bold ${
+              isDarkMode ? 'bg-yellow-500 text-gray-900' : 'bg-yellow-500 text-white'
+            }`}>2</span>
+            Access personalized recommendations.
+          </li>
+          <li className="flex items-center">
+            <span className={`w-6 h-6 flex items-center justify-center rounded-full mr-3 font-bold ${
+              isDarkMode ? 'bg-yellow-500 text-gray-900' : 'bg-yellow-500 text-white'
+            }`}>3</span>
+            Track your activity and progress.
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
