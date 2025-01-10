@@ -98,7 +98,7 @@ const DonorPage: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-900 text-white min-h-screen">
+    <div className="p-6 bg-gray-900 text-white min-h-screen w-screen">
       {/* Welcome Section */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-extrabold text-yellow-500 mb-2">Welcome to the Donor Portal</h1>

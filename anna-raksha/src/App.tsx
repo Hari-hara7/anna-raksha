@@ -10,12 +10,13 @@ import Dashboard from './components/Dashboard';
 import History from './components/History';
 import Footer from './components/Footer';
 
+
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
         <Navbar />
-        <div className="container mx-auto p-4">
+        <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
