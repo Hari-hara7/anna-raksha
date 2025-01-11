@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
-import { FaHome, FaUser, FaHistory, FaSignOutAlt, FaBars, FaTimes } from 'react-icons/fa';
-import logo from '../assets/annaraksha.png'; // Ensure correct path for logoanna-raksha/src/assets/annaraksha.png
+import { FaHome, FaUser, FaHistory, FaSignOutAlt, FaBars, FaTimes, FaMapMarkedAlt } from 'react-icons/fa'; // Import FaMapMarkedAlt for the map icon
+import logo from '../assets/annaraksha.png'; // Ensure correct path for logo
 
 const Navbar: React.FC = () => {
   const { user, signOut } = useAuth();
@@ -39,6 +39,10 @@ const Navbar: React.FC = () => {
           <FaUser className="mr-2" />
           Dashboard
         </Link>
+        <Link to="/map" className="flex items-center hover:text-yellow-500 transition duration-300">
+          <FaMapMarkedAlt className="mr-2" /> {/* Map Icon */}
+          Map
+        </Link>
         {user ? (
           <button
             onClick={signOut}
@@ -50,7 +54,7 @@ const Navbar: React.FC = () => {
         ) : (
           <Link to="/login" className="flex items-center hover:text-yellow-500 transition duration-300">
             <FaUser className="mr-2" />
-           Signin
+            Signin
           </Link>
         )}
       </div>
@@ -119,6 +123,14 @@ const Navbar: React.FC = () => {
             <FaUser className="mr-3 text-lg" />
             Dashboard
           </Link>
+          <Link
+            to="/map"
+            className="flex items-center hover:text-yellow-500 transition duration-300"
+            onClick={toggleMenu}
+          >
+            <FaMapMarkedAlt className="mr-3 text-lg" />
+            Map
+          </Link>
 
           {/* Authentication */}
           {user ? (
@@ -136,7 +148,7 @@ const Navbar: React.FC = () => {
               onClick={toggleMenu}
             >
               <FaUser className="mr-3 text-lg" />
-             Signin
+              Signin
             </Link>
           )}
         </div>

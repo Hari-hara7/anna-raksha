@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
+
 const Home: React.FC = () => {
   const [language, setLanguage] = useState('en');
 
@@ -95,6 +96,8 @@ const Home: React.FC = () => {
           <option value="kn">ಕನ್ನಡ</option>
         </select>
       </div>
+
+
 
         {/* Hero Section */}
         <section className="relative text-center py-20 px-6">

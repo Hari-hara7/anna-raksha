@@ -9,7 +9,7 @@ import DonorPage from './components/DonorPage';
 import Dashboard from './components/Dashboard';
 import History from './components/History';
 import Footer from './components/Footer';
-
+import MapDisplay from './components/MapDisplay'; // Import the MapDisplay component
 
 const App: React.FC = () => {
   return (
@@ -24,6 +24,7 @@ const App: React.FC = () => {
             <Route path="/donor" element={<DonorPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/history" element={<History />} />
+            <Route path="/map" element={<MapDisplay />} /> {/* Add a route for the map */}
           </Routes>
         </div>
         <Footer /> {/* Add Footer here */}
