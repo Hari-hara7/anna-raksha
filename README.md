@@ -5,7 +5,6 @@ You can watch the demo video by clicking the link below:
 [Watch Demo Video](demo video.mp4)
 
 
-Replace `YOUR_VIDEO_ID` with the ID of your YouTube video. You can find the video ID in the YouTube URL after `v=`.
 
 ##Food Donation and Request System
 
