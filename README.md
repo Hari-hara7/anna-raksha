@@ -2,7 +2,7 @@
 
 Check out the demo of the project in the video below:
 
-[![Demo Video](demo video.mp4)](https://www.youtube.com/watch?v=YOUR_VIDEO_ID)
+[![Demo Video](demo video.mp4)](demo video.mp4)
 
 Replace `YOUR_VIDEO_ID` with the ID of your YouTube video. You can find the video ID in the YouTube URL after `v=`.
 
