@@ -58,3 +58,61 @@ To run this project locally, follow the steps below:
    git clone https://github.com/Hari-hara7/anna-raksha.git
 
 
+## Firebase Setup 🔑
+
+### Firebase Authentication 🛂:
+- Enable **Email/Password Authentication** or use any other authentication method.
+
+### Firestore 📚:
+- Create two collections in Firestore:
+  - **foodPosts**: For storing donated food details.
+  - **foodRequests**: For storing food request details.
+  
+- The documents in these collections will contain information like food name, quantity, pickup location, and user details (email, name, etc.).
+
+---
+
+## Built-in Icons 🖼️
+
+The app uses [Font Awesome](https://fontawesome.com/) icons for displaying various actions like adding posts, editing, deleting, and more. You can easily replace them or add new ones as needed.
+
+### Example icons:
+
+- **Add Post** ➕
+- **Edit** ✏️
+- **Delete** ❌
+
+You can refer to the full icon library here: [Font Awesome Icons](https://fontawesome.com/icons).
+
+---
+
+## Contributing 🤝
+
+We welcome contributions! If you'd like to contribute to the project, feel free to:
+
+1. **Fork the repository.**
+2. **Create a new branch** (`git checkout -b feature/your-feature-name`).
+3. **Make your changes and commit them** (`git commit -am 'Add your feature'`).
+4. **Push to the branch** (`git push origin feature/your-feature-name`).
+5. **Create a new Pull Request**.
+
+---
+
+## License 📝
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Links 🔗
+
+- [GitHub Repository](https://github.com/your-username/food-donation-app)
+- [Live Demo](https://your-live-demo-url.com)
+
+---
+
+### Notes:
+- Be sure to replace the placeholder **GitHub** links, Firebase setup, and demo URL with your actual repository and project details.
+- Use the appropriate icon sizes and styles based on your preference (you can also adjust icon sizes or styling using CSS classes).
+
+
