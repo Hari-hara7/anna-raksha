@@ -2,7 +2,7 @@
 
 You can watch the demo video by clicking the link below:
 
-[Watch Demo Video](C:\Users\harih\New folder (55)\anna-raksha\anna-raksha\src\assets\video.mp4)
+[Watch Demo Video](https://github.com/Hari-hara7/anna-raksha/blob/main/anna-raksha/src/assets/video.mp4)
 
 
 
