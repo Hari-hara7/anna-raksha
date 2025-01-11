@@ -8,7 +8,7 @@ const Dashboard: React.FC = () => {
   // Check if the user is signed in
   if (!user) {
     return (
-      <div className={`flex flex-col items-center justify-center min-h-screen px-4 ${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gray-50 text-gray-700'}`}>
+      <div className={`flex flex-col items-center justify-center min-h-screen w-screen px-4 ${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gray-50 text-gray-700'}`}>
         <p className="text-lg sm:text-2xl font-semibold text-center">
           You need to sign in to access the dashboard.
         </p>
@@ -20,7 +20,7 @@ const Dashboard: React.FC = () => {
   const displayName = user.displayName || 'User';
 
   return (
-    <div className={`${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gradient-to-br from-yellow-50 via-white to-gray-100'} min-h-screen flex flex-col items-center px-4 sm:px-6`}>
+    <div className={`${isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gradient-to-br from-yellow-50 via-white to-gray-100'} min-h-screen w-screen flex flex-col items-center px-4 sm:px-6`}>
       {/* Theme Toggle */}
       <div className="w-full flex justify-end p-4">
         <button
