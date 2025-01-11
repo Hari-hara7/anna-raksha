@@ -38,7 +38,23 @@ The following technologies were used to build this project:
 
 ---
 
-## Project Structure 📂
+---
 
-Here's the basic structure of the project:
+## Installation 🛠️
+
+To run this project locally, follow the steps below:
+
+### Prerequisites 🖥️
+
+- Node.js installed on your machine.
+- Firebase account (for Firebase Authentication and Firestore setup).
+- A modern browser (Chrome, Firefox, etc.).
+
+### Steps 🔄
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/food-donation-app.git
+
 
