@@ -1,6 +1,6 @@
 # Food Donation and Request System
 
-![Project Image](https://via.placeholder.com/800x300)  <!-- Replace with your actual project image URL -->
+![Project Image](Techstack.jpg)  <!-- Replace with your actual project image URL -->
 
 ## Project Overview
 
@@ -39,7 +39,7 @@ The following technologies were used to build this project:
 ---
 
 ---
-
+![Project Image](banner.png) 
 ## Installation 🛠️
 
 To run this project locally, follow the steps below:
