@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase';
-import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+import { collection, getDocs, query, orderBy, updateDoc, doc } from 'firebase/firestore';
 import { FaEnvelope, FaPhone, FaUtensils, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
 
 const HistoryPage: React.FC = () => {
   const [foodPosts, setFoodPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Function to check if a date is expired
-  const isExpired = (expireDate: Date) => {
-    return new Date() > expireDate;
+  // Function to handle claiming food
+  const handleClaimFood = async (postId: string) => {
+    try {
+      const postRef = doc(db, 'foodPosts', postId);
+      await updateDoc(postRef, { claimed: true });
+      alert('Food claimed successfully!');
+      // Update UI by marking the post as claimed
+      setFoodPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId ? { ...post, claimed: true } : post
+        )
+      );
+    } catch (error) {
+      console.error('Error claiming food:', error);
+      alert('Failed to claim food. Please try again.');
+    }
   };
 
   // Fetch food posts from Firestore on page load
@@ -115,6 +128,18 @@ const HistoryPage: React.FC = () => {
                 <div className="flex items-center space-x-2 text-gray-300">
                   <FaPhone className="text-yellow-400" />
                   <p>{post.phoneNumber}</p>
+                </div>
+                <div>
+                  {post.claimed ? (
+                    <p className="text-green-500 font-bold">Claimed</p>
+                  ) : (
+                    <button
+                      onClick={() => handleClaimFood(post.id)}
+                      className="mt-4 bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg hover:bg-yellow-500 transition"
+                    >
+                      Claim Food
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="absolute top-0 left-0 h-1 w-full bg-yellow-400 transition-all duration-300 hover:w-0"></div>
