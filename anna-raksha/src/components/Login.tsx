@@ -17,7 +17,7 @@ const Login: React.FC = () => {
       if (role === 'donor') {
         navigate('/donor-dashboard');
       } else {
-        navigate('/user-dashboard');
+        navigate('/dashboard');
       }
     } catch (error) {
       console.error('Login failed:', error);
