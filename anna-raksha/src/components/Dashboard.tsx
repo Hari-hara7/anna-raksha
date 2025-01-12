@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiArrowRight, FiLogOut, FiCheckCircle } from 'react-icons/fi';
+import { FiArrowRight, FiLogOut, FiCheckCircle, FaSignInAlt,} from 'react-icons/fi';
 
 const Dashboard: React.FC = () => {
   const { user, signOut } = useAuth();
@@ -16,9 +16,10 @@ const Dashboard: React.FC = () => {
           isDarkMode ? 'bg-gray-900 text-yellow-400' : 'bg-gray-50 text-gray-700'
         }`}
       >
-        <p className="text-lg sm:text-2xl font-semibold text-center">
-          You need to sign in to access the dashboard.
-        </p>
+       <p className="text-lg sm:text-2xl font-semibold text-center flex items-center justify-center space-x-2">
+      <FaSignInAlt className="text-xl" />
+      <span>You need to sign in to access the dashboard.</span>
+    </p>
       </div>
     );
   }
