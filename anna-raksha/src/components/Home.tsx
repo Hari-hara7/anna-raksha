@@ -214,7 +214,7 @@ const Home: React.FC = () => {
           transition={{ delay: 1, duration: 1 }}
         >
           <Link
-            to="/join"
+            to="/login"
             className="border-2 border-gold text-gold px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gold hover:text-black transition m-0 p-0"
           >
             {translations[language].joinNow}
