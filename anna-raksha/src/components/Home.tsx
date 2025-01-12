@@ -84,18 +84,19 @@ const Home: React.FC = () => {
   return (
     <div className="bg-black text-white min-h-screen">
       {/* Language Selector */}
-      <div className="absolute top-16 right-4">
-        <select
-          className="bg-gray-800 text-white px-4 py-2 rounded-md"
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-        >
-          <option value="en">English</option>
-          <option value="te">తెలుగు</option>
-          <option value="hi">हिंदी</option>
-          <option value="kn">ಕನ್ನಡ</option>
-        </select>
-      </div>
+      <div className="absolute top-16 right-4 z-10">
+  <select
+    className="bg-gray-800 text-white px-4 py-2 rounded-md"
+    value={language}
+    onChange={(e) => setLanguage(e.target.value)}
+  >
+    <option value="en">English</option>
+    <option value="te">తెలుగు</option>
+    <option value="hi">हिंदी</option>
+    <option value="kn">ಕನ್ನಡ</option>
+  </select>
+</div>
+
 
 
 

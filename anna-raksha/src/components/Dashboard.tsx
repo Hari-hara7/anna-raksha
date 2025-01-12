@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiArrowRight, FiLogOut,FiCheckCircle } from 'react-icons/fi'
-
+import { FiArrowRight, FiLogOut, FiCheckCircle } from 'react-icons/fi';
 
 const Dashboard: React.FC = () => {
   const { user, signOut } = useAuth();
@@ -51,7 +50,7 @@ const Dashboard: React.FC = () => {
       <div
         className={`${
           isDarkMode ? 'bg-gray-800 text-yellow-400' : 'bg-white text-gray-800'
-        } w-full max-w-md sm:max-w-lg shadow-lg rounded-xl p-6 text-center`}
+        } w-full max-w-md sm:max-w-lg shadow-lg rounded-xl p-6 text-center mb-8`}
       >
         <img
           src={profileImage}
@@ -65,15 +64,15 @@ const Dashboard: React.FC = () => {
           Email: <span className="font-medium">{user.email}</span>
         </p>
         <button
-  onClick={signOut}
-  className={`w-full flex items-center justify-center py-2 text-sm sm:text-base mt-4 rounded-lg shadow-md focus:outline-none focus:ring-2 transition-all ${
-    isDarkMode
-      ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-300'
-      : 'bg-yellow-500 text-white hover:bg-yellow-600'
-  }`}
->
-  <FiLogOut className="mr-2" size={20} /> Sign Out
-</button>
+          onClick={signOut}
+          className={`w-full flex items-center justify-center py-2 text-sm sm:text-base mt-4 rounded-lg shadow-md focus:outline-none focus:ring-2 transition-all ${
+            isDarkMode
+              ? 'bg-yellow-400 text-gray-900 hover:bg-yellow-300'
+              : 'bg-yellow-500 text-white hover:bg-yellow-600'
+          }`}
+        >
+          <FiLogOut className="mr-2" size={20} /> Sign Out
+        </button>
       </div>
 
       {/* Dashboard Features */}
@@ -118,26 +117,27 @@ const Dashboard: React.FC = () => {
 
         {/* Donate Food Button */}
         <button
-  onClick={() => navigate('/donor')}
-  className={`w-full flex items-center justify-center py-2 text-sm sm:text-base mt-6 rounded-lg shadow-md focus:outline-none focus:ring-2 transition-all ${
-    isDarkMode
-      ? 'bg-red-500 text-white hover:bg-red-400'
-      : 'bg-red-600 text-white hover:bg-red-500'
-  }`}
->
-  <FiArrowRight className="mr-2" size={20} /> Donate Food
-</button>
-<button
-  onClick={() => navigate('/history')}
-  className={`w-full flex items-center justify-center py-2 text-sm sm:text-base mt-4 rounded-lg shadow-md focus:outline-none focus:ring-2 transition-all ${
-    isDarkMode
-      ? 'bg-green-500 text-white hover:bg-green-400'
-      : 'bg-green-600 text-white hover:bg-green-500'
-  }`}
->
-  <FiCheckCircle className="mr-2" size={20} /> Donated Food
-</button>
-
+          onClick={() => navigate('/donor')}
+          className={`w-full flex items-center justify-center py-2 text-sm sm:text-base mt-6 rounded-lg shadow-md focus:outline-none focus:ring-2 transition-all ${
+            isDarkMode
+              ? 'bg-red-500 text-white hover:bg-red-400'
+              : 'bg-red-600 text-white hover:bg-red-500'
+          }`}
+        >
+          <FiArrowRight className="mr-2" size={20} /> Donate Food
+        </button>
+        
+        {/* Donated Food Button */}
+        <button
+          onClick={() => navigate('/history')}
+          className={`w-full flex items-center justify-center py-2 text-sm sm:text-base mt-4 rounded-lg shadow-md focus:outline-none focus:ring-2 transition-all ${
+            isDarkMode
+              ? 'bg-green-500 text-white hover:bg-green-400'
+              : 'bg-green-600 text-white hover:bg-green-500'
+          }`}
+        >
+          <FiCheckCircle className="mr-2" size={20} /> Donated Food
+        </button>
       </div>
     </div>
   );
