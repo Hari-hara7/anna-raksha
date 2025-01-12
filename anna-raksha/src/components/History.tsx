@@ -17,6 +17,7 @@ import {
   FaMapMarkerAlt,
   FaBuilding,
   FaClipboardList,
+  FaHandHoldingHeart,
 } from 'react-icons/fa';
 
 const HistoryPage: React.FC = () => {
@@ -186,11 +187,13 @@ const HistoryPage: React.FC = () => {
                   </div>
                 ) : (
                   <button
-                    onClick={() => handleClaimFood(post.id)}
-                    className="mt-4 px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 hover:text-white transition duration-300"
-                  >
-                    Claim Food
-                  </button>
+                  onClick={() => handleClaimFood(post.id)}
+                  className="mt-4 px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 hover:text-white transition duration-300 flex items-center space-x-2"
+                >
+                  <FaHandHoldingHeart className="text-black" />
+                  <span>Claim Food</span>
+                </button>
+                
                 )}
               </div>
             </div>
