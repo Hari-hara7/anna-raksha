@@ -1,31 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase';
-import { collection, getDocs, query, orderBy, updateDoc, doc } from 'firebase/firestore';
-import { FaEnvelope, FaPhone, FaUtensils, FaCalendarAlt, FaMapMarkerAlt } from 'react-icons/fa';
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  updateDoc,
+  doc,
+} from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {
+  FaEnvelope,
+  FaPhone,
+  FaUtensils,
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+  FaBuilding,
+} from 'react-icons/fa';
 
 const HistoryPage: React.FC = () => {
   const [foodPosts, setFoodPosts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState<any>(null);
 
-  // Function to handle claiming food
-  const handleClaimFood = async (postId: string) => {
-    try {
-      const postRef = doc(db, 'foodPosts', postId);
-      await updateDoc(postRef, { claimed: true });
-      alert('Food claimed successfully!');
-      // Update UI by marking the post as claimed
-      setFoodPosts((prevPosts) =>
-        prevPosts.map((post) =>
-          post.id === postId ? { ...post, claimed: true } : post
-        )
-      );
-    } catch (error) {
-      console.error('Error claiming food:', error);
-      alert('Failed to claim food. Please try again.');
-    }
-  };
+  // Initialize Firebase Auth
+  const auth = getAuth();
 
-  // Fetch food posts from Firestore on page load
+  // Get the logged-in user info
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setCurrentUser({
+          displayName: user.displayName,
+          email: user.email,
+          profilePicture: user.photoURL,
+        });
+      } else {
+        setCurrentUser(null);
+      }
+    });
+  }, [auth]);
+
   useEffect(() => {
     const fetchFoodPosts = async () => {
       try {
@@ -34,7 +49,7 @@ const HistoryPage: React.FC = () => {
         const posts = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
-          expireDate: doc.data().expireDate ? doc.data().expireDate.toDate() : null, // Convert Firestore Timestamp to JS Date
+          expireDate: doc.data().expireDate ? doc.data().expireDate.toDate() : null,
         }));
         setFoodPosts(posts);
       } catch (error) {
@@ -47,19 +62,40 @@ const HistoryPage: React.FC = () => {
     fetchFoodPosts();
   }, []);
 
-  // Add Tawk.to chatbot script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://embed.tawk.to/67817afbaf5bfec1dbe9eb10/1ih8sgqct';
-    script.async = true;
-    script.charset = 'UTF-8';
-    script.setAttribute('crossorigin', '*');
-    document.body.appendChild(script);
+  const handleClaimFood = async (postId: string) => {
+    if (!currentUser) {
+      alert('Please log in to claim food.');
+      return;
+    }
 
-    return () => {
-      document.body.removeChild(script); // Clean up the script on component unmount
-    };
-  }, []);
+    try {
+      const foodPostRef = doc(db, 'foodPosts', postId);
+      await updateDoc(foodPostRef, {
+        claimedBy: {
+          displayName: currentUser.displayName,
+          profilePicture: currentUser.profilePicture,
+          email: currentUser.email,
+        },
+      });
+
+      setFoodPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.id === postId
+            ? {
+                ...post,
+                claimedBy: {
+                  displayName: currentUser.displayName,
+                  profilePicture: currentUser.profilePicture,
+                  email: currentUser.email,
+                },
+              }
+            : post
+        )
+      );
+    } catch (error) {
+      console.error('Error claiming food:', error);
+    }
+  };
 
   if (loading) {
     return (
@@ -68,6 +104,7 @@ const HistoryPage: React.FC = () => {
       </div>
     );
   }
+
   return (
     <div className="p-6 bg-gray-900 text-white min-h-screen w-screen">
       <h1 className="text-3xl font-bold mb-8 text-center border-b border-gray-700 pb-4 text-yellow-400">
@@ -81,7 +118,6 @@ const HistoryPage: React.FC = () => {
               className="relative bg-gray-800 border border-gray-700 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 overflow-hidden hover:bg-gray-700"
             >
               <div className="p-6 space-y-4">
-                {/* Profile Picture and Name */}
                 <div className="flex items-center space-x-4 mb-4">
                   <img
                     src={post.profilePicture || 'https://via.placeholder.com/100'}
@@ -96,8 +132,6 @@ const HistoryPage: React.FC = () => {
                     </p>
                   </div>
                 </div>
-
-                {/* Food Post Details */}
                 <h3 className="text-xl font-bold mb-2">{post.name}</h3>
                 <div className="flex items-center space-x-2 text-gray-300">
                   <FaUtensils className="text-yellow-400" />
@@ -123,26 +157,33 @@ const HistoryPage: React.FC = () => {
                   <p>Location: {post.pickupLocation}</p>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-300">
-                  <p>Organization: {post.organizationName}</p>
-                </div>
+  <FaBuilding className="text-yellow-400" />
+  <p>Organization: {post.organizationName}</p>
+</div>
+
                 <div className="flex items-center space-x-2 text-gray-300">
                   <FaPhone className="text-yellow-400" />
                   <p>{post.phoneNumber}</p>
                 </div>
-                <div>
-                  {post.claimed ? (
-                    <p className="text-green-500 font-bold">Claimed</p>
-                  ) : (
-                    <button
-                      onClick={() => handleClaimFood(post.id)}
-                      className="mt-4 bg-yellow-400 text-black font-bold py-2 px-4 rounded-lg hover:bg-yellow-500 transition"
-                    >
-                      Claim Food
-                    </button>
-                  )}
-                </div>
+                {post.claimedBy ? (
+                  <div className="mt-4 text-center">
+                    <p className="text-yellow-400 font-bold">Claimed by:</p>
+                    <img
+                      src={post.claimedBy.profilePicture}
+                      alt="Claimant"
+                      className="w-16 h-16 rounded-full mx-auto mt-2 border-2 border-yellow-400"
+                    />
+                    <p>{post.claimedBy.displayName}</p>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => handleClaimFood(post.id)}
+                    className="mt-4 px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500"
+                  >
+                    Claim Food
+                  </button>
+                )}
               </div>
-              <div className="absolute top-0 left-0 h-1 w-full bg-yellow-400 transition-all duration-300 hover:w-0"></div>
             </div>
           ))}
         </div>
