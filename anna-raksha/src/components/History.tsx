@@ -16,6 +16,7 @@ import {
   FaCalendarAlt,
   FaMapMarkerAlt,
   FaBuilding,
+  FaClipboardList,
 } from 'react-icons/fa';
 
 const HistoryPage: React.FC = () => {
@@ -115,24 +116,28 @@ const HistoryPage: React.FC = () => {
           {foodPosts.map((post) => (
             <div
               key={post.id}
-              className="relative bg-gray-800 border border-gray-700 rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 overflow-hidden hover:bg-gray-700"
+              className="relative bg-gray-800 border border-gray-700 rounded-lg shadow-md transform transition duration-300 hover:shadow-2xl hover:scale-105 group"
             >
               <div className="p-6 space-y-4">
                 <div className="flex items-center space-x-4 mb-4">
                   <img
-                    src={post.profilePicture || 'https://via.placeholder.com/100'}
+                    src={post.profilePicture || "https://via.placeholder.com/100"}
                     alt="Profile"
-                    className="w-12 h-12 rounded-full border-2 border-yellow-400"
+                    className="w-12 h-12 rounded-full border-2 border-yellow-400 group-hover:border-yellow-500 transition duration-300"
                   />
                   <div>
-                    <h3 className="text-xl font-bold text-yellow-400">{post.displayName}</h3>
+                    <h3 className="text-xl font-bold text-yellow-400 group-hover:text-yellow-300 transition duration-300">
+                      {post.displayName}
+                    </h3>
                     <p className="text-gray-300 flex items-center space-x-2">
                       <FaEnvelope className="text-yellow-400" />
                       <span>{post.email}</span>
                     </p>
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-2">{post.name}</h3>
+                <h3 className="text-xl font-bold mb-2 group-hover:text-yellow-400 transition duration-300">
+                  {post.name}
+                </h3>
                 <div className="flex items-center space-x-2 text-gray-300">
                   <FaUtensils className="text-yellow-400" />
                   <p>Quantity: {post.quantity}</p>
@@ -141,6 +146,11 @@ const HistoryPage: React.FC = () => {
                   <FaUtensils className="text-yellow-400" />
                   <p>Food Type: {post.foodType}</p>
                 </div>
+                <div className="flex items-center space-x-2 text-gray-300">
+  <FaClipboardList className="text-blue-400" />
+  <p>Pickup Instructions: {post.pickupInstructions}</p>
+</div>
+
                 <div className="flex items-center space-x-2 text-gray-300">
                   <FaCalendarAlt className="text-yellow-400" />
                   <p>
@@ -157,10 +167,9 @@ const HistoryPage: React.FC = () => {
                   <p>Location: {post.pickupLocation}</p>
                 </div>
                 <div className="flex items-center space-x-2 text-gray-300">
-  <FaBuilding className="text-yellow-400" />
-  <p>Organization: {post.organizationName}</p>
-</div>
-
+                  <FaBuilding className="text-yellow-400" />
+                  <p>Organization: {post.organizationName}</p>
+                </div>
                 <div className="flex items-center space-x-2 text-gray-300">
                   <FaPhone className="text-yellow-400" />
                   <p>{post.phoneNumber}</p>
@@ -171,14 +180,14 @@ const HistoryPage: React.FC = () => {
                     <img
                       src={post.claimedBy.profilePicture}
                       alt="Claimant"
-                      className="w-16 h-16 rounded-full mx-auto mt-2 border-2 border-yellow-400"
+                      className="w-16 h-16 rounded-full mx-auto mt-2 border-2 border-yellow-400 group-hover:border-yellow-500 transition duration-300"
                     />
                     <p>{post.claimedBy.displayName}</p>
                   </div>
                 ) : (
                   <button
                     onClick={() => handleClaimFood(post.id)}
-                    className="mt-4 px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500"
+                    className="mt-4 px-4 py-2 bg-yellow-400 text-black font-bold rounded-lg hover:bg-yellow-500 hover:text-white transition duration-300"
                   >
                     Claim Food
                   </button>
@@ -192,6 +201,7 @@ const HistoryPage: React.FC = () => {
       )}
     </div>
   );
+
 };
 
 export default HistoryPage;
