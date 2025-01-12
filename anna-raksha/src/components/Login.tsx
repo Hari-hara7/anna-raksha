@@ -3,27 +3,26 @@ import { useAuth } from '../context/AuthContext';
 import { FaGoogle, FaEnvelope, FaLock, FaUserTie, FaUser } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
-const Login: React.FC = () => {
+
+
+ const Login: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<'donor' | 'user'>('user'); // Role state
   const { loginWithGoogle, loginWithEmail } = useAuth();
-  const navigate = useNavigate();
+   const [role, setRole] = useState<'donor' | 'user'>('user'); // Role state
+  const navigate = useNavigate(); // Hook for navigation
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await loginWithEmail(email, password, role); // Pass the role for backend handling
-      if (role === 'donor') {
-        navigate('/donor-dashboard');
-      } else {
-        navigate('/dashboard');
-      }
+      await loginWithEmail(email, password); // Assume this returns a promise
+      navigate('/dashboard'); // Redirect to dashboard after successful login
     } catch (error) {
       console.error('Login failed:', error);
       // Optionally, show an error message to the user
     }
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black to-gray-900 px-4">
