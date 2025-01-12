@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const Dashboard: React.FC = () => {
   const { user, signOut } = useAuth();
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   // Check if the user is signed in
   if (!user) {
@@ -58,7 +60,7 @@ const Dashboard: React.FC = () => {
         </button>
       </div>
 
-      {/* Additional Section */}
+      {/* Dashboard Features */}
       <div className={`${isDarkMode ? 'bg-gray-800 text-yellow-400' : 'bg-white text-gray-800'} w-full max-w-md sm:max-w-lg mt-8 shadow-lg rounded-xl p-6`}>
         <h2 className="text-lg sm:text-xl font-semibold mb-4">Dashboard Features</h2>
         <ul className="space-y-3 text-sm sm:text-base">
@@ -87,6 +89,20 @@ const Dashboard: React.FC = () => {
             Track your activity and progress.
           </li>
         </ul>
+      </div>
+
+  
+
+      {/* Donation Section */}
+      <div className={`${isDarkMode ? 'bg-gray-800 text-yellow-400' : 'bg-white text-gray-800'} w-full max-w-md sm:max-w-lg mt-8 shadow-lg rounded-xl p-6`}>
+        <h2 className="text-lg sm:text-xl font-semibold mb-4">Support Our Cause</h2>
+        <p className="mb-4">We rely on donations to continue providing valuable services. Your support makes a huge difference!</p>
+        <button
+          onClick={() => navigate('/donar')} // Use navigate here
+          className={`w-full py-2 sm:py-3 text-lg font-semibold bg-gradient-to-r from-yellow-400 to-yellow-600 text-gray-900 rounded-full shadow-lg hover:bg-yellow-500 transition duration-300`}
+        >
+          Donate Now
+        </button>
       </div>
     </div>
   );
