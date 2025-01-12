@@ -95,7 +95,7 @@ import { useNavigate } from 'react-router-dom';
             loginWithGoogle(role)
               .then(() => {
                 if (role === 'donor') navigate('/donor-dashboard');
-                else navigate('/user-dashboard');
+                else navigate('/dashboard');
               })
               .catch((error) => console.error('Google login failed:', error));
           }}
