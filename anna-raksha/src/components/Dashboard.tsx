@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiArrowRight, FiLogOut, FiCheckCircle, FaSignInAlt,} from 'react-icons/fi';
+import { FiArrowRight, FiLogOut, FiCheckCircle,} from 'react-icons/fi';
 import { FaSignInAlt } from 'react-icons/fa';
 
 const Dashboard: React.FC = () => {
