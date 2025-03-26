@@ -5,12 +5,12 @@ import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore'
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyAVWdg1WCR39no2XDN70PGRl1CrR-AGlXA',
-  authDomain: 'anna-rakshaka.firebaseapp.com',
-  projectId: 'anna-rakshaka',
-  storageBucket: 'anna-rakshaka.firebasestorage.app',
-  messagingSenderId: '97071651413',
-  appId: '1:97071651413:web:16564a9382976eddfcd2dc',
+  apiKey: "AIzaSyC1SE66I1e4qOlqhU1hf9TEQ483Q_PsLvA",
+  authDomain: "crypto-2eb38.firebaseapp.com",
+  projectId: "crypto-2eb38",
+  storageBucket: "crypto-2eb38.firebasestorage.app",
+  messagingSenderId: "539257024803",
+  appId: "1:539257024803:web:78e43c24f87b6cfb4d5c96"
 };
 
 // Initialize Firebase
