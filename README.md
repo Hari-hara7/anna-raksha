@@ -9,7 +9,7 @@ You can watch the demo video by clicking the link below:
 
 ##Food Donation and Request System
 
-![Project Image](Techstack.jpg)  <!-- Replace with your actual project image URL -->
+![Project Image](Techstack.jpg)  <!--ce with your actual project image URL -->
 ![Project Image](banner.png) 
 
 ## Project Overview
