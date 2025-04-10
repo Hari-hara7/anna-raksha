@@ -3,15 +3,17 @@ import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, collection, addDoc, Timestamp } from 'firebase/firestore';
 
-// Firebase configuration
+
 const firebaseConfig = {
-  apiKey: "AIzaSyC1SE66I1e4qOlqhU1hf9TEQ483Q_PsLvA",
-  authDomain: "crypto-2eb38.firebaseapp.com",
-  projectId: "crypto-2eb38",
-  storageBucket: "crypto-2eb38.firebasestorage.app",
-  messagingSenderId: "539257024803",
-  appId: "1:539257024803:web:78e43c24f87b6cfb4d5c96"
+  apiKey: "AIzaSyAfM-iCsZjjY6_qS8fpHf5vZgn3KYHrysk",
+  authDomain: "anna-raksha.firebaseapp.com",
+  projectId: "anna-raksha",
+  storageBucket: "anna-raksha.firebasestorage.app",
+  messagingSenderId: "691554658291",
+  appId: "1:691554658291:web:04dbbff5aee698d4829486",
+  measurementId: "G-QBR1X8HN5S"
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
