@@ -128,6 +128,10 @@ const Navbar: React.FC = () => {
   <FaMapMarkedAlt className="mr-2" />
   Request
 </Link>
+<Link to="/notifications" className="flex items-center hover:text-yellow-500 transition duration-300">
+          <FaMapMarkedAlt className="mr-2" /> {/* Map Icon */}
+         Notifcations
+        </Link>
           <Link
             to="/dashboard"
             className="flex items-center hover:text-yellow-500 transition duration-300"
