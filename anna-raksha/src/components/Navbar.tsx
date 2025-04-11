@@ -31,9 +31,18 @@ const Navbar: React.FC = () => {
           <FaUser className="mr-2" />
           Donor
         </Link>
+        <Link to="/requestPage" className="flex items-center hover:text-yellow-500 transition duration-300">
+  <FaMapMarkedAlt className="mr-2" />
+  Request
+</Link>
+
         <Link to="/history" className="flex items-center hover:text-yellow-500 transition duration-300">
           <FaHistory className="mr-2" />
           History
+        </Link>
+        <Link to="/notifications" className="flex items-center hover:text-yellow-500 transition duration-300">
+          <FaMapMarkedAlt className="mr-2" /> {/* Map Icon */}
+         Notifcations
         </Link>
         <Link to="/dashboard" className="flex items-center hover:text-yellow-500 transition duration-300">
           <FaUser className="mr-2" />
@@ -115,6 +124,10 @@ const Navbar: React.FC = () => {
             <FaHistory className="mr-3 text-lg" />
             History
           </Link>
+          <Link to="/requestPage" className="flex items-center hover:text-yellow-500 transition duration-300">
+  <FaMapMarkedAlt className="mr-2" />
+  Request
+</Link>
           <Link
             to="/dashboard"
             className="flex items-center hover:text-yellow-500 transition duration-300"

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { db } from '../firebase';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import FoodRequestsFeed from './FoodRequestsFeed'; // 👈 Add this import
+import { toast } from 'react-hot-toast';
 
 const RequestPage: React.FC = () => {
   const [foodName, setFoodName] = useState('');
@@ -10,35 +12,43 @@ const RequestPage: React.FC = () => {
   const { user } = useAuth();
 
   const handlePostRequest = async () => {
-    if (user) {
-      try {
-        // Post the food request to Firestore
-        await addDoc(collection(db, 'foodRequests'), {
-          foodName,
-          quantity,
-          message,
-          userId: user.uid,
-          timestamp: Timestamp.fromDate(new Date()), // Store the current timestamp
-          email: user.email,
-          displayName: user.displayName,
-          profilePicture: user.photoURL,
-        });
+    if (!user) {
+      toast.error('Please login to post a request.');
+      return;
+    }
 
-        // Clear input fields after submitting the request
-        setFoodName('');
-        setQuantity(0);
-        setMessage('');
-      } catch (error) {
-        console.error('Error posting food request:', error);
-      }
+    if (!foodName || quantity <= 0) {
+      toast.error('Please enter valid food name and quantity.');
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, 'foodRequests'), {
+        foodName,
+        quantity,
+        message,
+        userId: user.uid,
+        timestamp: Timestamp.fromDate(new Date()),
+        email: user.email,
+        displayName: user.displayName,
+        profilePicture: user.photoURL,
+      });
+
+      toast.success('Food request posted!');
+      setFoodName('');
+      setQuantity(0);
+      setMessage('');
+    } catch (error) {
+      console.error('Error posting food request:', error);
+      toast.error('Something went wrong.');
     }
   };
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Request Food</h1>
+    <div className="p-4 max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4">🍽️ Request Food</h1>
       {user ? (
-        <div>
+        <div className="mb-10">
           <input
             type="text"
             placeholder="Food Name"
@@ -59,13 +69,21 @@ const RequestPage: React.FC = () => {
             onChange={(e) => setMessage(e.target.value)}
             className="border p-2 mb-4 w-full"
           />
-          <button onClick={handlePostRequest} className="bg-blue-500 text-white p-2 rounded">
+          <button
+            onClick={handlePostRequest}
+            className="bg-blue-500 text-white p-2 rounded"
+          >
             Post Request
           </button>
         </div>
       ) : (
-        <p>Please login to post a food request.</p>
+        <p className="text-red-600">Please login to post a food request.</p>
       )}
+
+      {/* 👉 Real-Time Feed Below */}
+      <div className="mt-10">
+        <FoodRequestsFeed />
+      </div>
     </div>
   );
 };

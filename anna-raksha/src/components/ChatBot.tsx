@@ -1,14 +1,25 @@
 // src/components/ChatBot.tsx
 import React, { useEffect, useState } from "react";
-import { auth, db, collection, addDoc, query, orderBy, getDocs } from 'firebase/firestore';
+import { getAuth } from "firebase/auth";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  query,
+  orderBy,
+  getDocs
+} from "firebase/firestore";
 import { FaPaperPlane } from "react-icons/fa";
 import Message from "./Message";
+
+// Initialize Firebase services
+const auth = getAuth();
+const db = getFirestore();
 
 const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [newMessage, setNewMessage] = useState<string>("");
 
-  // Fetch messages from Firestore
   const fetchMessages = async () => {
     const q = query(collection(db, "messages"), orderBy("timestamp"));
     const querySnapshot = await getDocs(q);
@@ -16,14 +27,13 @@ const ChatBot: React.FC = () => {
     setMessages(messagesData);
   };
 
-  // Send new message
   const sendMessage = async () => {
     if (newMessage.trim() === "") return;
 
     try {
       await addDoc(collection(db, "messages"), {
         text: newMessage,
-        user: auth.currentUser?.displayName,
+        user: auth.currentUser?.displayName || "Anonymous",
         timestamp: new Date(),
       });
       setNewMessage("");

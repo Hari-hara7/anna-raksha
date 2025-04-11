@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -9,13 +9,22 @@ import DonorPage from './components/DonorPage';
 import Dashboard from './components/Dashboard';
 import History from './components/History';
 import Footer from './components/Footer';
-import MapDisplay from './components/MapDisplay'; // Import the MapDisplay component
+import MapDisplay from './components/MapDisplay';
+import RequestPage from './components/RequestPage';
+import RequestsHistoryPage from './components/RequestsHistoryPage';
+import ChatBot from './components/ChatBot';
+import SignUp from './components/SignUp';
+import FoodRequestsFeed from './components/FoodRequestsFeed'; // ✅ Importing the feed
+import NotificationsPage from './components/NotificationsPage';
+import { Toaster } from 'react-hot-toast';
 
 const App: React.FC = () => {
   return (
     <AuthProvider>
       <Router>
         <Navbar />
+        <Toaster position="top-right" reverseOrder={false} />
+
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -24,10 +33,17 @@ const App: React.FC = () => {
             <Route path="/donor" element={<DonorPage />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/history" element={<History />} />
-            <Route path="/map" element={<MapDisplay />} /> {/* Add a route for the map */}
+            <Route path="/map" element={<MapDisplay />} />
+            <Route path="/requestPage" element={<RequestPage />} />
+            <Route path="/requestsHistory" element={<RequestsHistoryPage />} />
+            <Route path="/chatbot" element={<ChatBot />} />
+            <Route path="/foodfeed" element={<FoodRequestsFeed />} /> {/* ✅ Added route */}
+            <Route path="/signup" element={<SignUp />} /> {/* Optional duplicate */}
+            <Route path="/notifications" element={<NotificationsPage />} />
           </Routes>
         </div>
-        <Footer /> {/* Add Footer here */}
+
+        <Footer />
       </Router>
     </AuthProvider>
   );

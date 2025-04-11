@@ -163,6 +163,7 @@ const Home: React.FC = () => {
         >
           {translations[language].aboutDescription}
         </motion.p>
+        
       </section>
 
       {/* Features Section */}
