@@ -13,7 +13,7 @@ import MapDisplay from './components/MapDisplay';
 import RequestPage from './components/RequestPage';
 import RequestsHistoryPage from './components/RequestsHistoryPage';
 import ChatBot from './components/ChatBot';
-import SignUp from './components/SignUp';
+
 import FoodRequestsFeed from './components/FoodRequestsFeed'; // ✅ Importing the feed
 import NotificationsPage from './components/NotificationsPage';
 import { Toaster } from 'react-hot-toast';
@@ -37,8 +37,8 @@ const App: React.FC = () => {
             <Route path="/requestPage" element={<RequestPage />} />
             <Route path="/requestsHistory" element={<RequestsHistoryPage />} />
             <Route path="/chatbot" element={<ChatBot />} />
-            <Route path="/foodfeed" element={<FoodRequestsFeed />} /> {/* ✅ Added route */}
-            <Route path="/signup" element={<SignUp />} /> {/* Optional duplicate */}
+            <Route path="/foodfeed" element={<FoodRequestsFeed />} /> 
+           
             <Route path="/notifications" element={<NotificationsPage />} />
           </Routes>
         </div>
