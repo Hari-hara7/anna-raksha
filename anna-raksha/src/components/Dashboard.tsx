@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FiArrowRight, FiLogOut, FiCheckCircle,} from 'react-icons/fi';
 import { FaSignInAlt } from 'react-icons/fa';
+import FeedbackForm from "../components/FeedbackForm";
 
 const Dashboard: React.FC = () => {
   const { user, signOut } = useAuth();
@@ -47,6 +48,7 @@ const Dashboard: React.FC = () => {
           {isDarkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
         </button>
       </div>
+      
 
       {/* Profile Section */}
       <div
@@ -140,6 +142,16 @@ const Dashboard: React.FC = () => {
         >
           <FiCheckCircle className="mr-2" size={20} /> Donated Food
         </button>
+        <button
+      onClick={() => navigate('/feedbackform')} // Navigate to the feedback form route
+      className={`w-full flex items-center justify-center py-2 text-sm sm:text-base mt-4 rounded-lg shadow-md focus:outline-none focus:ring-2 transition-all ${
+        isDarkMode
+          ? 'bg-yellow-500 text-white hover:bg-yellow-400'
+          : 'bg-yellow-600 text-white hover:bg-yellow-500'
+      }`}
+    >
+      <FiCheckCircle className="mr-2" size={20} /> Submit Feedback
+    </button>
       </div>
     </div>
   );

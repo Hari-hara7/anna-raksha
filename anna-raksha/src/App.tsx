@@ -13,8 +13,9 @@ import MapDisplay from './components/MapDisplay';
 import RequestPage from './components/RequestPage';
 import RequestsHistoryPage from './components/RequestsHistoryPage';
 import ChatBot from './components/ChatBot';
+import FeedbackForm from './components/FeedbackForm';
 
-import FoodRequestsFeed from './components/FoodRequestsFeed'; // ✅ Importing the feed
+import FoodRequestsFeed from './components/FoodRequestsFeed'; 
 import NotificationsPage from './components/NotificationsPage';
 import { Toaster } from 'react-hot-toast';
 
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             <Route path="/requestsHistory" element={<RequestsHistoryPage />} />
             <Route path="/chatbot" element={<ChatBot />} />
             <Route path="/foodfeed" element={<FoodRequestsFeed />} /> 
+            <Route path="/feedbackform" element={<FeedbackForm />} /> 
            
             <Route path="/notifications" element={<NotificationsPage />} />
           </Routes>
